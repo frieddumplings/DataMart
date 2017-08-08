@@ -15,11 +15,10 @@
 @foreach(var i in Model)
 {
     <p>
-        <br />
         @(i.name + " " + i.counter)
     </p>
 }
+<b><a href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Car" })">Show Web Api Data</a></b>
 
 
-<a href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Car" })">Show Web Api Data</a>
 
