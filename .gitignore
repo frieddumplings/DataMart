@@ -259,3 +259,8 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+
+#AppSecrets 
+#Keep all secret environment vars here(db pws etc)
+/AppSettingsSecrets.config
