@@ -19,7 +19,7 @@
     <div class="panel panel-body">
         @foreach (var i in Model)
         {
-            <br />@(i.name + " " + i.counter)
+            <br />@(i.name + " Total Sales: $" + i.counter)
         }
     </div>
 </div>
@@ -42,7 +42,8 @@
                 <span class="input-group-addon" id="basic-addon1">🚔</span>
                 <input id="inputCar" type="text" class="form-control" placeholder="Add a car - Car Name" aria-describedby="basic-addon1">
             </div>
-            <ul id="list">
+            <br />
+            <ul id="list" style="text-decoration:none;">
                 
 
             </ul>
@@ -64,7 +65,7 @@
                         200: function (data) {
                             $('#list').empty();
                             $.each(data, function (id, car) {
-                                var text = car.name + ' ' + car.counter;
+                                var text = car.name + ' Total Sales: $' + car.counter;
 
                                 $('#list').append('<li>' + text + '</li>');
                             })
@@ -86,7 +87,7 @@
                         200: function (data) {
                             $('#list').empty();
                             $.each(data, function (id, car) {
-                                var text = car.name + ' ' + car.counter;
+                                var text = car.name + ' Total Sales: $' + car.counter;
 
                                 $('#list').append('<li>' + text + '</li>');
                             })
@@ -110,7 +111,7 @@
 
                         $('#list').empty();
                         $.each(data, function (id, car) {
-                            var text = car.name + ' ' + car.counter;
+                            var text = car.name + ' Total Sales: $' + car.counter;
                             $('#list').append('<li>' + text + '</li>');
                         })
                     }
