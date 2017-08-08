@@ -34,6 +34,7 @@
             <b><a href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Car" })">Show Web Api Data via link</a></b>
             <br />
             <b><a id="showCars" href="javascript:void(0)">Show Web Api Data</a></b>
+            <b><a id="createCar" href="javascript:void(0)">Create a new Car</a></b>
             <ul id="list">
 
 
@@ -45,10 +46,10 @@
 
 <script type="text/javascript">
 
-        $(function () {
-            $('#showCars').click(function () {
-                $.ajax({
-                    url: '@Url.HttpRouteUrl("DefaultApi", new { controller = "Car" })',
+    $(function () {
+        $('#showCars').click(function () {
+            $.ajax({
+                url: '@Url.HttpRouteUrl("DefaultApi", new { controller = "Car" })',
                     cache: false,
                     type: 'GET',
                     contentType: 'application/json',
@@ -57,7 +58,7 @@
                             $('#list').empty();
                             $.each(data, function (id, car) {
                                 var text = car.name + ' ' + car.counter;
-                                
+
                                 $('#list').append('<li>' + text + '</li>');
                             })
                         }
@@ -67,4 +68,29 @@
 
         });
 
+        var ObjData = {
+            value: 'value' // will be accessible in $_POST['data1']
+        }
+        $(function () {
+            $('#createCar').click(function () {
+                $.ajax({
+                    url: '@Url.HttpRouteUrl("DefaultApi", new { controller = "Car" })',
+                    cache: false,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify("Test"),
+                    statusCode: {
+                        200: function (data) {
+                            
+                            $('#list').empty();
+                            $.each(data, function (id, car) {
+                                var text = car.name + ' ' + car.counter;
+                                $('#list').append('<li>' + text + '</li>');
+                            })
+                        }
+                    }
+                });
+            })
+
+        });
 </script>
