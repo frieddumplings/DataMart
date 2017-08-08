@@ -31,10 +31,10 @@
     </div>
     <div class="panel panel-body">
         <div>
-            <b><a href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Car" })">Show Web Api Data via link</a></b>
+            <b><a href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Car", action = "Get" })">Show Web Api Data via link</a></b>
             <br />
-            <b><a id="showCars" href="javascript:void(0)">Show Web Api Data</a></b>
-            <b><a id="createCar" href="javascript:void(0)">Create a new Car</a></b>
+            <b><a id="showCars" class="btn btn-success" href="javascript:void(0)">Show Web Api Data</a></b>
+            <b><a id="createCar" class="btn btn-info"  href="javascript:void(0)">Create a new Car</a></b>
             <ul id="list">
 
 
@@ -49,7 +49,7 @@
     $(function () {
         $('#showCars').click(function () {
             $.ajax({
-                url: '@Url.HttpRouteUrl("DefaultApi", new { controller = "Car" })',
+                url: '@Url.HttpRouteUrl("DefaultApi", new { controller = "Car", action = "Get" })',
                     cache: false,
                     type: 'GET',
                     contentType: 'application/json',
@@ -74,11 +74,11 @@
         $(function () {
             $('#createCar').click(function () {
                 $.ajax({
-                    url: '@Url.HttpRouteUrl("DefaultApi", new { controller = "Car" })',
+                    url: '@Url.HttpRouteUrl("DefaultApi", new { controller = "Car", action = "Post" })',
                     cache: false,
                     type: 'POST',
                     contentType: 'application/json',
-                    data: JSON.stringify("Test"),
+                    data: JSON.stringify("Hello"),
                     statusCode: {
                         200: function (data) {
                             

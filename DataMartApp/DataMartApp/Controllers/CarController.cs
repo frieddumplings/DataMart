@@ -13,6 +13,30 @@ namespace DataMartApp.Controllers
     public class CarController : ApiController
     {
         developmentEntities db = new developmentEntities();
+
+        
+        [HttpGet]
+        [ActionName("GetTop5")]
+        public List<seedData> GetTop5()
+        {
+            return db.seedData.OrderBy(x => x.counter).Take(5).ToList();
+        }
+
+        [HttpGet]
+        [Route("api/Car/returnText/{id}")]
+        public string returnText(int? id)
+        {
+            return "This is default";
+        }
+
+        [HttpGet] //This is some custom MVC Routing that can be defined specificlly with the decoration method Route.
+        [Route("Custom/Car/returnText/{text}")]
+        [Route("GET/returnText/{text}")]
+        public string returnText(string text)
+        {
+            return text;
+        }
+
         // GET api/<controller>
         public List<seedData> Get()
         {
@@ -20,10 +44,11 @@ namespace DataMartApp.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public seedData Get(int id)
         {
-            return "value";
+            return db.seedData.FirstOrDefault(x => x.id == id);
         }
+     
 
         // POST api/<controller>
         public List<seedData> Post([FromBody]string value)

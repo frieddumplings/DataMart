@@ -27,10 +27,18 @@ namespace DataMartApp.App_Start
 
             config.MapHttpAttributeRoutes();
 
+     
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate:"api/{controller}/{id}",
+                routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new {id = RouteParameter.Optional}
+                );
+
+            config.Routes.MapHttpRoute(
+                name: "textSearch",
+                routeTemplate: "test/{controller}/{action}/{text}",
+                defaults: new { text = RouteParameter.Optional }
                 );
         }
     }
