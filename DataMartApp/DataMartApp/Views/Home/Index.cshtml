@@ -8,17 +8,63 @@
 <h2>Index</h2>
 
 <p>
-    Basic Data Mart App under construction
-    @System.Configuration.ConfigurationManager.ConnectionStrings["tdb"].Name
+    Basic Data Mart App under construction connected to development database
+    
 </p>
 
-@foreach(var i in Model)
-{
-    <p>
-        @(i.name + " " + i.counter)
-    </p>
-}
-<b><a href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Car" })">Show Web Api Data</a></b>
+<div class="panel panel-info">
+    <div class="panel panel-header">
+        This is a basic Razor View rendered without WebAPI
+    </div>
+    <div class="panel panel-body">
+        @foreach (var i in Model)
+        {
+            <br />@(i.name + " " + i.counter)
+        }
+    </div>
+</div>
 
 
+<div class="panel panel-success">
+    <div class="panel panel-header">
+        This is rendered with WebApi and AJAX
+    </div>
+    <div class="panel panel-body">
+        <div>
+            <b><a href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Car" })">Show Web Api Data via link</a></b>
+            <br />
+            <b><a id="showCars" href="javascript:void(0)">Show Web Api Data</a></b>
+            <ul id="list">
 
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+        $(function () {
+            $('#showCars').click(function () {
+                $.ajax({
+                    url: '@Url.HttpRouteUrl("DefaultApi", new { controller = "Car" })',
+                    cache: false,
+                    type: 'GET',
+                    contentType: 'application/json',
+                    statusCode: {
+                        200: function (data) {
+                            $('#list').empty();
+                            $.each(data, function (id, car) {
+                                var text = car.name + ' ' + car.counter;
+                                
+                                $('#list').append('<li>' + text + '</li>');
+                            })
+                        }
+                    }
+                });
+            })
+
+        });
+
+</script>
