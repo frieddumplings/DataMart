@@ -31,9 +31,10 @@
     </div>
     <div class="panel panel-body">
         <div>
+            <b><a href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Car", action = "GetTop5" })">Show Top 5 priced cars</a></b>
             <b><a href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Car", action = "Get" })">Show Web Api Data via link</a></b>
             <br />
-            <b><a id="showCars" class="btn btn-success" href="javascript:void(0)">Show Web Api Data</a></b>
+            <b><a id="showCars" class="btn btn-success" href="javascript:void(0)">Refresh Web Api Data on Page</a></b>
             <b><a id="createCar" class="btn btn-info"  href="javascript:void(0)">Create a new Car</a></b>
             <div class="input-group" style="margin-top:5px">
                 <span class="input-group-addon" id="basic-addon1">🚔</span>
