@@ -31,11 +31,13 @@
     </div>
     <div class="panel panel-body">
         <div>
-            <b><a href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Car", action = "GetTop5" })">Show Top 5 priced cars</a></b>
-            <b><a href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Car", action = "Get" })">Show Web Api Data via link</a></b>
+            <b><a href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Car", action = "GetTop5" })">Show Top 5 priced cars via link</a></b> <br />
+            <b><a href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Car", action = "Get" })">Show All Web Api Data via link</a></b>
             <br />
-            <b><a id="showCars" class="btn btn-success" href="javascript:void(0)">Refresh Web Api Data on Page</a></b>
-            <b><a id="createCar" class="btn btn-info"  href="javascript:void(0)">Create a new Car</a></b>
+
+            <b><a style="margin-top:5px" id="showCars" class="btn btn-primary" href="javascript:void(0)">Refresh All Web Api Data on Page</a></b> <br />
+            <b><a style="margin-top:5px" id="filterCars" class="btn btn-success" href="javascript:void(0)">Filter Api Data on Page</a></b> <br />
+            <b><a style="margin-top:5px" id="createCar" class="btn btn-info"  href="javascript:void(0)">Create a new Car</a></b>
             <div class="input-group" style="margin-top:5px">
                 <span class="input-group-addon" id="basic-addon1">🚔</span>
                 <input id="inputCar" type="text" class="form-control" placeholder="Add a car - Car Name" aria-describedby="basic-addon1">
@@ -71,23 +73,21 @@
                 });
             })
 
-        });
+     });
 
-
-        $(function () {
-            $('#createCar').click(function () {
-                $.ajax({
-                    url: '@Url.HttpRouteUrl("DefaultApi", new { controller = "Car", action = "Post" })',
+    $(function () {
+        $('#filterCars').click(function () {
+            $.ajax({
+                url: '@Url.HttpRouteUrl("DefaultApi", new { controller = "Car", action = "GetTop5" })',
                     cache: false,
-                    type: 'POST',
+                    type: 'GET',
                     contentType: 'application/json',
-                    data: JSON.stringify($("#inputCar").val()),
                     statusCode: {
                         200: function (data) {
-                            
                             $('#list').empty();
                             $.each(data, function (id, car) {
                                 var text = car.name + ' ' + car.counter;
+
                                 $('#list').append('<li>' + text + '</li>');
                             })
                         }
@@ -95,5 +95,28 @@
                 });
             })
 
-        });
+     });
+
+    $(function () {
+        $('#createCar').click(function () {
+            $.ajax({
+                url: '@Url.HttpRouteUrl("DefaultApi", new { controller = "Car", action = "Post" })',
+                cache: false,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify($("#inputCar").val()),
+                statusCode: {
+                    200: function (data) {
+
+                        $('#list').empty();
+                        $.each(data, function (id, car) {
+                            var text = car.name + ' ' + car.counter;
+                            $('#list').append('<li>' + text + '</li>');
+                        })
+                    }
+                }
+            });
+        })
+
+    });
 </script>
