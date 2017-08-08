@@ -264,3 +264,4 @@ __pycache__/
 #AppSecrets 
 #Keep all secret environment vars here(db pws etc)
 /AppSettingsSecrets.config
+/DataMartApp/DataMartApp/Secrets.config
