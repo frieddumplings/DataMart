@@ -1,4 +1,6 @@
 ﻿@model List<DataMartApp.Models.seedData>
+
+
 @{
     ViewBag.Title = "Index";
 }
@@ -17,3 +19,7 @@
         @(i.name + " " + i.counter)
     </p>
 }
+
+
+<a href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Car" })">Show Web Api Data</a>
+
