@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<DataMartApp.Models.seedData>
+@{
     ViewBag.Title = "Index";
 }
 
@@ -8,3 +9,11 @@
     Basic Data Mart App under construction
     @System.Configuration.ConfigurationManager.ConnectionStrings["tdb"].Name
 </p>
+
+@foreach(var i in Model)
+{
+    <p>
+        <br />
+        @(i.name + " " + i.counter)
+    </p>
+}
